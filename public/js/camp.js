@@ -35,7 +35,6 @@ $('html, body').animate({
 
 
 let sulka = document.querySelectorAll(".sulka");
-console.log(sulka[0])
 for(let a = 2; a < sulka.length; a++){
   if(a == 2){
     sulka[a].addEventListener("click", function () {
@@ -149,7 +148,27 @@ $(function () {
 
 
 
-console.log("111");
+$(function () {
+  $('.teach_slider').slick({
+    infinite: true,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    dots: false,
+    responsive: [{
+      breakpoint: 924,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+        centerMode:true
+      }
+     }
+    ]
+  });
+});
+
+
 const BigImg = document.getElementsByClassName('gallery_item');
 if(BigImg.length >= 5){
   BigImg[0].classList.add('gallery_item_big');
@@ -289,164 +308,103 @@ function bodyUnlockk() {
   }, timeoutt);
 }
 
-
-
-/* этот код помечает картинки, для удобства разработки */
-let i = 1;
-for(let li of carousel.querySelectorAll('li')) {
-  li.style.position = 'relative';
-//   li.insertAdjacentHTML('beforeend', `<span style="position:absolute;left:0;top:0">${i}</span>`);
-  i++;
+console.log(window.outerWidth);
+if(window.outerWidth > 930){
+window.onload = function(){
+var arrImg = document.querySelectorAll(".teach_slider .slide");
+var ind = [];
+for(let a = 0; a < arrImg.length; a++){
+  ind[a] = arrImg[a].dataset.slickIndex;
+  // console.log(ind[a]);
 }
-
-
-var Trans = document.getElementsByClassName('images');
-/* конфигурация */
-  var width = (window.innerWidth)*20/100; // ширина картинки
-console.log(window.innerWidth);
-let count = 1; // видимое количество изображений
-
-let list = carousel.querySelector('ul');
-let listElems = carousel.querySelectorAll('li');
-
-let position = 0; // положение ленты прокрутки
-
-var LiLi = document.getElementsByClassName("lili");
-
-
-var arrImg = document.getElementsByClassName("teach");
-var countt = 2;
-var ccount = 1;
-var ccountt = 3;
+// console.log(arrImg[8]);
+// console.log(arrImg[8].dataset.slickIndex);
+var ccount = 0;
 var countWidth = 0;
-var countMarginOne = 0;
-var countMarginTwo = 1;
-// var MarginOne = 140;
-// var MarginTwo = 200;
-
-  arrImg[ccount].classList.add('heigthh');
-  arrImg[countt].classList.add('heigth');
-  arrImg[ccountt].classList.add('heigthh');
-
-    var offsetWidth = (window.innerWidth)*9/100;
-    var offsetWidthh = (window.innerWidth)*12/100;
-
-  var MarginOne = offsetWidth;
-    var MarginTwo = offsetWidthh;
-
-  LiLi[countMarginOne].style.marginRight = MarginOne + 'px';
-LiLi[countMarginOne+3].style.marginRight = MarginOne + 'px';
-LiLi[countMarginOne+4].style.marginRight = MarginOne + 'px';
-LiLi[countMarginTwo].style.marginRight = MarginTwo + 'px';
-LiLi[countMarginTwo+1].style.marginRight = MarginTwo + 'px';
-
-
-carousel.querySelector('.prev').onclick = function() {
-  // сдвиг влево
-
-  position += width * count;
-  // последнее передвижение влево может быть не на 3, а на 2 или 1 элемент
-  position = Math.min(position, 0)
-  list.style.marginLeft = position + 'px';
-  if(countt > 2){
-    countMarginOne--;
-    countMarginTwo--;
-    LiLi[countMarginOne].style.marginRight = MarginOne + 'px';
-    LiLi[countMarginOne+3].style.marginRight = MarginOne + 'px';
-    LiLi[countMarginOne+4].style.marginRight = MarginOne + 'px';
-    LiLi[countMarginTwo].style.marginRight = MarginTwo + 'px';
-    LiLi[countMarginTwo+1].style.marginRight = MarginTwo + 'px';
-
-    arrImg[countt].classList.remove('heigth');
-    countt--;
-    arrImg[countt].classList.add('heigth');
-
-    arrImg[ccount].classList.remove('heigthh');
+  arrImg[ccount+5].querySelector('.teach').classList.add('heigthhh');
+  arrImg[ccount+6].querySelector('.teach').classList.add('heigthh');
+  arrImg[ccount+7].querySelector('.teach').classList.add('heigth');
+  arrImg[ccount+8].querySelector('.teach').classList.add('heigthh');
+   arrImg[ccount+9].querySelector('.teach').classList.add('heigthhh');
+  
+    var next = document.getElementsByClassName("slick-next");
+    next[0].classList.add('nextt');
+    var prev = document.getElementsByClassName("slick-prev");
+    prev[0].classList.add('prevv');
+  
+document.querySelector('.prevv').onclick = function() {
+  if(ccount !== -1){
+    arrImg[ccount+5].querySelector('.teach').classList.remove('heigthhh');
+    arrImg[ccount+9].querySelector('.teach').classList.remove('heigthhh');
+    arrImg[ccount+6].querySelector('.teach').classList.remove('heigthh');
+    arrImg[ccount+8].querySelector('.teach').classList.remove('heigthh');
+    arrImg[ccount+7].querySelector('.teach').classList.remove('heigth');
     ccount--;
-    arrImg[ccount].classList.add('heigthh');
+    console.log(ccount)
+    arrImg[ccount+5].querySelector('.teach').classList.add('heigthhh');
+    arrImg[ccount+9].querySelector('.teach').classList.add('heigthhh');
+    arrImg[ccount+6].querySelector('.teach').classList.add('heigthh');
+    arrImg[ccount+8].querySelector('.teach').classList.add('heigthh');
+    arrImg[ccount+7].querySelector('.teach').classList.add('heigth');
+  }
+  if(ccount === -1){
+    arrImg[ccount+5].querySelector('.teach').classList.remove('heigthhh');
+    arrImg[ccount+9].querySelector('.teach').classList.remove('heigthhh');
+    arrImg[ccount+6].querySelector('.teach').classList.remove('heigthh');
+    arrImg[ccount+8].querySelector('.teach').classList.remove('heigthh');
+    arrImg[ccount+7].querySelector('.teach').classList.remove('heigth');
+    ccount = arrImg.length-12;
 
-    arrImg[ccountt].classList.remove('heigthh');
-    ccountt--;
-    arrImg[ccountt].classList.add('heigthh');
+    arrImg[ccount+5].querySelector('.teach').classList.add('heigthhh');
+    arrImg[ccount+9].querySelector('.teach').classList.add('heigthhh');
+    arrImg[ccount+6].querySelector('.teach').classList.add('heigthh');
+    arrImg[ccount+8].querySelector('.teach').classList.add('heigthh');
+    arrImg[ccount+7].querySelector('.teach').classList.add('heigth');
   }
 
-  // countWidth--;
 };
 // }
 
 
   // if(countWidth < arrImg.length){
-carousel.querySelector('.next').onclick = function() {
- 
-  // console.log(countWidth);
-  // console.log(arrImg.length-1);
-    // console.log(countt);
-    // countWidth++;
-  // сдвиг вправо
-  position -= width;
-  // последнее передвижение вправо может быть не на 3, а на 2 или 1 элемент
-  // position = Math.max(position, -width * (listElems.length - count - 4));
-  list.style.marginLeft = position + 'px';
-
-  if(countt < arrImg.length-3){
-    Trans[0].style.transitionDuration = 500 + 'ms';
-    countMarginOne++;
-    countMarginTwo++;
-    LiLi[countMarginOne].style.marginRight = MarginOne + 'px';
-    LiLi[countMarginOne+3].style.marginRight = MarginOne + 'px';
-    LiLi[countMarginOne+4].style.marginRight = MarginOne + 'px';
-    LiLi[countMarginTwo].style.marginRight = MarginTwo + 'px';
-    LiLi[countMarginTwo+1].style.marginRight = MarginTwo + 'px';
-
-    arrImg[countt].classList.remove('heigth');
-    countt++;
-    arrImg[countt].classList.add('heigth');
-
-    arrImg[ccount].classList.remove('heigthh');
+document.querySelector('.nextt').onclick = function() {
+  // console.log("111")
+  // if(countt < arrImg.length-3){
+    // Trans[0].style.transitionDuration = 500 + 'ms';
+    if(ccount !== arrImg.length-11){
+    arrImg[ccount+5].querySelector('.teach').classList.remove('heigthhh');
+    arrImg[ccount+9].querySelector('.teach').classList.remove('heigthhh');
+    arrImg[ccount+6].querySelector('.teach').classList.remove('heigthh');
+    arrImg[ccount+8].querySelector('.teach').classList.remove('heigthh');
+    arrImg[ccount+7].querySelector('.teach').classList.remove('heigth');
     ccount++;
-    arrImg[ccount].classList.add('heigthh');
-
-    arrImg[ccountt].classList.remove('heigthh');
-    ccountt++;
-    arrImg[ccountt].classList.add('heigthh');
+    console.log(ccount)
+    arrImg[ccount+5].querySelector('.teach').classList.add('heigthhh');
+    arrImg[ccount+9].querySelector('.teach').classList.add('heigthhh');
+    arrImg[ccount+6].querySelector('.teach').classList.add('heigthh');
+    arrImg[ccount+8].querySelector('.teach').classList.add('heigthh');
+    arrImg[ccount+7].querySelector('.teach').classList.add('heigth');
   }
-  if(countt === arrImg.length-3){
-    Trans[0].style.transitionDuration = 0 + 's';
-    arrImg[countt].classList.remove('heigth');
-    arrImg[ccount].classList.remove('heigthh');
-    arrImg[ccountt].classList.remove('heigthh');
-    position = 0;
-    countt = 2;
-    ccount = 1;
-    ccountt = 3;
-    countWidth = 0;
-    countMarginOne = 0;
-    countMarginTwo = 1;
-    list.style.marginLeft = 0 + 'px';
+  if(ccount === arrImg.length-11){
+    // Trans[0].style.transitionDuration = 0 + 's';
+    arrImg[ccount+5].querySelector('.teach').classList.remove('heigthhh');
+    arrImg[ccount+9].querySelector('.teach').classList.remove('heigthhh');
+    arrImg[ccount+6].querySelector('.teach').classList.remove('heigthh');
+    arrImg[ccount+8].querySelector('.teach').classList.remove('heigthh');
+    arrImg[ccount+7].querySelector('.teach').classList.remove('heigth');
+    // position = 0;
+    // countt = 2;
+    ccount = 0;
 
-    arrImg[countt].classList.add('heigth');
-
-   
-    arrImg[ccount].classList.add('heigthh');
-
-    arrImg[ccountt].classList.add('heigthh');
-
-    LiLi[countMarginOne].style.marginRight = MarginOne + 'px';
-    LiLi[countMarginOne+3].style.marginRight = MarginOne + 'px';
-    LiLi[countMarginOne+4].style.marginRight = MarginOne + 'px';
-    LiLi[countMarginTwo].style.marginRight = MarginTwo + 'px';
-    LiLi[countMarginTwo+1].style.marginRight = MarginTwo + 'px';
+    arrImg[ccount+5].querySelector('.teach').classList.add('heigthhh');
+    arrImg[ccount+9].querySelector('.teach').classList.add('heigthhh');
+    arrImg[ccount+6].querySelector('.teach').classList.add('heigthh');
+    arrImg[ccount+8].querySelector('.teach').classList.add('heigthh');
+    arrImg[ccount+7].querySelector('.teach').classList.add('heigth');
   }
-  // else{
-  //   countt = 2;
-  //   ccount = 1;
-  //   ccountt = 3;
-  //   countWidth = 0;
-  //   countMarginOne = 0;
-  //   countMarginTwo = 1;
-  // }
-
+}
 };
+  }
   // }
 
 /******/ })()
